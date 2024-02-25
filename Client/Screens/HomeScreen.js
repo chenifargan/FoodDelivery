@@ -4,7 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../Theme";
-import Categories from "../Components/Categories";
+import Categories from "../Components/categories";
+import { featured } from "../constants";
+import FeaturedRow from "../Components/featuredRow";
 
 export default function HomeScreen() {
   return (
@@ -39,6 +41,19 @@ export default function HomeScreen() {
       >
         {/* categories */}
         <Categories />
+        {/* featured */}
+        <View className="mt-5">
+          {[featured, featured, featured].map((item, index) => {
+            return (
+              <FeaturedRow
+                key={index}
+                title={item.title}
+                description={item.description}
+                resturants={item.restaurants}
+              />
+            );
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
